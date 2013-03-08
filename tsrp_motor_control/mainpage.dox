@@ -1,0 +1,14 @@
+/**
+\mainpage
+\htmlinclude manifest.html
+
+\b tsrp_motor_control 
+
+<!-- 
+This package is targiting to create a ros node to handle the robot motor control.
+-->
+
+-->
+
+
+*/
