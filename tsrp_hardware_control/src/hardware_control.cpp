@@ -17,7 +17,7 @@ int main(int argc, char** argv)
 	{
 		ros::spinOnce();
 
-		motor_refresh.sleep();
+		refresh.sleep();
 	}
 	
 	ros::shutdown();
