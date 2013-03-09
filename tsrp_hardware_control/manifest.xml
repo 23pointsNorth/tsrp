@@ -1,0 +1,16 @@
+<package>
+  <description brief="tsrp_hardware_control">
+
+     tsrp_hardware_control
+
+  </description>
+  <author>dani</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/tsrp_hardware_control</url>
+  <depend package="roscpp"/>
+  <depend package="std_msgs"/>
+
+</package>
+
+
