@@ -13,11 +13,15 @@ GPIOpin::GPIOpin(unsigned int _pin, std::string _name)
 	pin = _pin;
 	name = _name;
 }
-GPIOpin::GPIOpin(unsigned int _pin, std::string _name, PinState _state)
+GPIOpin::GPIOpin(unsigned int _pin, std::string _name, PinState _state, PinOutput _output)
 {
 	pin = _pin;
 	name = _name;
 	SetPinState(_state);
+	if (_state == OUTPUT)
+	{
+		SetOutput(_output);
+	}
 }
 
 bool GPIOpin::InitializeGPIOpin()
@@ -81,6 +85,12 @@ void GPIOpin::SetAsOutput()
 	state = OUTPUT;
     INP_GPIO(pin); // must use INP_GPIO before we can use OUT_GPIO
     OUT_GPIO(pin);
+}
+
+void GPIOpin::ToggleOutput()
+{
+	output = (output == LOW)?(HIGH):(LOW);
+	SetOutput(output);
 }
 
 void GPIOpin::SetOutput(PinOutput _output)

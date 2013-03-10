@@ -29,13 +29,14 @@ class GPIOpin
 {
 public:
 	GPIOpin(unsigned int _pin, std::string _name);
-	GPIOpin(unsigned int _pin, std::string _name, PinState _state);
+	GPIOpin(unsigned int _pin, std::string _name, PinState _state, PinOutput _output = LOW);
 	~GPIOpin();
 
 	void SetPinState(PinState _state);
 	void SetAsInput();
 	void SetAsOutput();
 	void SetOutput(PinOutput _output);
+	void ToggleOutput();
 
 	static bool InitializeGPIOpin();
 

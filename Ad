@@ -1,0 +1,37 @@
+Hacker weekend
+
+Have you had the urge to just sit down and code, code, code 48 straight hours of awesomeness? Yes? 
+
+Now you have the opportunity to join the Team Singularity Robotics Project - TSRP! 
+During the weekend in mid April, we have arranged a place to contribute significantly to this project. 
+TSRP is aiming to open-source the software for a robotics investigation platform. Current aims are:
+
+* Intefrace the computer (Raspberry Pi) wirelessly (We don't want any cables, duh).
+* Create a mobile platform, move in any direction! 
+* Stick a webcam to it! Yes, eyes, eyes, spies everywhere!
+* Add servo control for a pan/tilt cam - Of course we like to move it, move it. 
+* Have ALL the sensors in the world! Stream and select information from the 4 sensors: accelerometer, magnetometer (can be used as compas?), gyro, pressure - today, the weather will be bad. It's up to us to see how to use them - pretty graphs, pretty graphs everywhere!
+* Add an awesome web-based interface! Control everything from everywhere! Bulgaria, UK, or Jamaica, doesn't matter, controled it.
+* Interface an Anolog-to-Digital-Converter - put some range finding, temperature ... anything else? 
+* Create a charging station - our robot must have food too!
+* Put some speakers/microphone, telepresense here we come.
+* Adjustable headlights? 
+* Make our robot social - let it post his thoughts in his blog - "Bzzz it's chilly today, only 15'C, I'll go and charge myself!" :D
+* Advanced projects: SLAM, 3D image mapping (just like google street view)
+* Your idea?
+* Your neighbours idea?
+
+We are aiming at solving the maximum amount of challenges we can. 
+
+Current stage can be found here: https://github.com/23pointsNorth/tsrp.git
+
+To participate:
+* Knowledge in C/C++ required. Bonus if experience in embedded programming, php, git, networking, unix, ROS, OpenCV..
+* VM machine + 16GB free space 
+* Git account: https://github.com/
+
+For more information contact Daniel Angelov.
+
+It will be an extremely good opportunity for thinking outside the box, creating new and cutting-edge stuff. At the end of the day, there are officially < 30 robotics platform using ROS. We can establish the next!
+
+If you are outside BG/occupied at that time, no worries, you can still join for an unlimited amount of time! This is where open sourcing comes into play - fork our repository, work in your free time. 
