@@ -1,8 +1,13 @@
+#build harware control only when embedded
 HARDWARE_CONTROL = tsrp_hardware_control
 MOTOR_CONTROL = tsrp_motor_control
 
-PACKAGES = $(HARDWARE_CONTROL) $(MOTOR_CONTROL) 
-	
+PACKAGES = $(MOTOR_CONTROL) 
+
+ifeq ($(EMBEDDED_HARDWARE),TRUE)
+	PACKAGES += $(HARDWARE_CONTROL)
+endif
+
 .PHONY: all $(PACKAGES)
 
 all: $(PACKAGES)
