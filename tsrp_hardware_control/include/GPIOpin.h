@@ -29,25 +29,30 @@ class GPIOpin
 {
 public:
 	GPIOpin(unsigned int _pin, std::string _name);
+	GPIOpin(unsigned int _pin, std::string _name, PinState _state);
 	~GPIOpin();
 
-	void SetPinState(PinState state);
+	void SetPinState(PinState _state);
 	void SetAsInput();
 	void SetAsOutput();
-	void SetOutput(PinOutput output);
+	void SetOutput(PinOutput _output);
+
+	static bool InitializeGPIOpin();
+
 private:
 	unsigned int pin;
 	std::string name;
-	
+	PinState state;
+	PinOutput output;
+
 	static bool io_setuped;
-	static void setup_io();
+	static bool setup_io();
 
 	static int  mem_fd;
-	static void* gpio_map;
+	static unsigned* gpio_map;
 
 	// I/O access
 	static volatile unsigned *gpio;
-
 };
 
 #endif /* GPIOPIN_H_ */
