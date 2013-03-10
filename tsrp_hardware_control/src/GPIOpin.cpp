@@ -5,14 +5,17 @@
 bool GPIOpin::io_setuped;
 int  GPIOpin::mem_fd;
 void* GPIOpin::gpio_map;
+volatile unsigned* GPIOpin::gpio;
 
-GPIOpin::GPIOpin(unsigned int pin, std::string name)
+GPIOpin::GPIOpin(unsigned int _pin, std::string _name)
 {
 	if (!io_setuped)
 	{
 		GPIOpin::setup_io();
 		io_setuped = true;
 	}
+	pin = _pin;
+	name = _name;
 }
 
 //
@@ -46,8 +49,6 @@ void GPIOpin::setup_io()
    // Always use volatile pointer!
    gpio = (volatile unsigned *)gpio_map;
 } // setup_io
-
-
 
 void GPIOpin::SetPinState(PinState state)
 {

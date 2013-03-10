@@ -28,7 +28,7 @@ enum PinState {INPUT, OUTPUT};
 class GPIOpin
 {
 public:
-	GPIOpin(unsigned int pin, std::string name);
+	GPIOpin(unsigned int _pin, std::string _name);
 	~GPIOpin();
 
 	void SetPinState(PinState state);
@@ -36,6 +36,9 @@ public:
 	void SetAsOutput();
 	void SetOutput(PinOutput output);
 private:
+	unsigned int pin;
+	std::string name;
+	
 	static bool io_setuped;
 	static void setup_io();
 
@@ -43,7 +46,7 @@ private:
 	static void* gpio_map;
 
 	// I/O access
-	volatile unsigned *gpio;
+	static volatile unsigned *gpio;
 
 };
 
