@@ -1,9 +1,18 @@
 #include <ros/ros.h>
 #include <sensor_msgs/Image.h>
+#include <opencv2/opencv.hpp>
+#include <cv_bridge/cv_bridge.h>
+#include <sensor_msgs/image_encodings.h>
+#include <std_msgs/Int32.h>
+
+bool img_received = false;
+cv::Mat img;
 
 void imageReceivedCallback(const sensor_msgs::ImageConstPtr& msg)
 {
   // display the image
+	img = cv_bridge::toCvShare(msg, sensor_msgs::image_encodings::RGB8)->image;
+	img_received = true;
 }
 
 int main(int argc, char** argv)
@@ -23,6 +32,13 @@ int main(int argc, char** argv)
 	while(ros::ok())
 	{
 		ros::spinOnce();
+		if (img_received)
+		{
+			cv::imshow("Image", img);
+
+			img_received = false;
+			cv::waitKey(5);
+		}
 
 		img_refresh.sleep();
 	}
