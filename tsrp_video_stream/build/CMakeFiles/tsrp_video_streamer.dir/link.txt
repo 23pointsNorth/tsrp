@@ -1,0 +1,1 @@
+/usr/bin/c++   -O2 -g     -pthread CMakeFiles/tsrp_video_streamer.dir/src/video_stream.o  -o ../bin/tsrp_video_streamer -rdynamic -L/opt/ros/fuerte/lib -lroscpp -lrostime -lrosconsole -lroscpp_serialization -lxmlrpcpp -lsensor_msgs -Wl,-rpath,/opt/ros/fuerte/lib 

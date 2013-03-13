@@ -1,0 +1,16 @@
+<package>
+  <description brief="tsrp_video_stream">
+
+     tsrp_video_stream
+
+  </description>
+  <author>pi</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/tsrp_video_stream</url>
+  <depend package="roscpp"/>
+  <depend package="sensor_msgs"/>
+
+</package>
+
+
