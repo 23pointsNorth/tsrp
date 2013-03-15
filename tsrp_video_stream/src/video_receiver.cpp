@@ -17,7 +17,7 @@ void imageReceivedCallback(const sensor_msgs::ImageConstPtr& msg)
 
 int main(int argc, char** argv)
 {
-	ros::init(argc, argv, "motor_control");
+	ros::init(argc, argv, "video_receiver");
 	if (!ros::master::check())
 	{
 		ROS_ERROR("[VIDEO_RECEIVER] Cannot detect ROS master!");
