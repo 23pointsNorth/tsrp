@@ -10,7 +10,7 @@ unsigned long long frame_id = 0;
 
 int main(int argc, char** argv)
 {
-	ros::init(argc, argv, "video_stream");
+	ros::init(argc, argv, "video_streamer");
 	if (!ros::master::check())
 	{
 		ROS_ERROR("[VIDEO_STREAMER] Cannot detect ROS master!");
@@ -41,6 +41,7 @@ int main(int argc, char** argv)
 		cv_brdg_img.header.frame_id = "frame_id";//frame_id;
 		cv_brdg_img.encoding = sensor_msgs::image_encodings::BGR8;
 		cv_brdg_img.image = frame;
+		
 		cv_brdg_img.toImageMsg(img);
 		img.height = frame.rows;
 		img.width  = frame.cols;
