@@ -1,4 +1,5 @@
 #include <ros/ros.h>
+#include <GPIOpin.h>
 
 int main(int argc, char** argv)
 {
@@ -13,9 +14,14 @@ int main(int argc, char** argv)
 
 	ros::Rate motor_refresh(200); //200Hz
 
+	GPIOpin dir(1, "direction");
+	GPIOpin speed(1, "speed", OUTPUT, LOW);
+
 	while(ros::ok())
 	{
 		ros::spinOnce();
+		
+		speed.ToggleOutput(); // Create a square wave 50% filled.
 
 		motor_refresh.sleep();
 	}
