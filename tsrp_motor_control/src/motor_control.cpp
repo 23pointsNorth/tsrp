@@ -14,8 +14,8 @@ int main(int argc, char** argv)
 
 	ros::Rate motor_refresh(200); //200Hz
 
-	GPIOpin dir(1, "direction");
-	GPIOpin speed(1, "speed", OUTPUT, LOW);
+	GPIOpin dir(17, "direction", OUTPUT, HIGH);
+	GPIOpin speed(18, "speed", OUTPUT, LOW);
 
 	while(ros::ok())
 	{

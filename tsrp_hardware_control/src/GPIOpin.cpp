@@ -12,6 +12,7 @@ GPIOpin::GPIOpin(unsigned int _pin, std::string _name)
 {
 	pin = _pin;
 	name = _name;
+	SetPinState(INPUT);
 }
 GPIOpin::GPIOpin(unsigned int _pin, std::string _name, PinState _state, PinOutput _output)
 {
@@ -91,12 +92,16 @@ void GPIOpin::SetAsOutput()
 
 void GPIOpin::ToggleOutput()
 {
+	if (state != OUTPUT) { return; }
+
 	output = (output == LOW)?(HIGH):(LOW);
 	SetOutput(output);
 }
 
 void GPIOpin::SetOutput(PinOutput _output)
 {
+	if (state != OUTPUT) { return; }
+
 	output = _output;
 	switch(_output)
 	{
