@@ -1,20 +1,28 @@
 #include <ros/ros.h>
 #include <sensor_msgs/Image.h>
 #include <opencv2/opencv.hpp>
-#include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/image_encodings.h>
-#include <std_msgs/Int32.h>
 
 bool img_received = false;
 cv::Mat img;
 
 void imageReceivedCallback(const sensor_msgs::Image& msg)
 {
-  // display the image
-	ROS_INFO("[VIDEO_RECEIVER] Converting...");
-	//img = cv_bridge::toCvShare(msg, sensor_msgs::image_encodings::BGR8).image;
-	img = cv::Mat(msg.height, msg.width, CV_8UC3, msg.data);
-	ROS_INFO("[VIDEO_RECEIVER] Converted.");
+  	ROS_INFO("[VIDEO_RECEIVER] Image received. Converting...");
+	//Create an empty image
+	img = cv::Mat(msg.height, msg.width, CV_8UC3);
+	//Load data to image
+	int msg_idx, buf_idx;
+	for(unsigned int i = 0; i < msg.height; i++)
+	{
+		for(unsigned int j = 0; j < msg.step; j++)
+		{
+			msg_idx = (msg.height - i - 1) * msg.step + j;
+			buf_idx = i * msg.step + j;
+			img.data[buf_idx] = msg.data[msg_idx];
+		}
+	}
+
 	img_received = true;
 }
 
@@ -37,9 +45,7 @@ int main(int argc, char** argv)
 		ros::spinOnce();
 		if (img_received)
 		{
-			ROS_INFO("[VIDEO_RECEIVER] showing...");
 			cv::imshow("Image", img);
-ROS_INFO("[VIDEO_RECEIVER] Shown.");
 	
 			img_received = false;
 			cv::waitKey(5);

@@ -29,5 +29,5 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
-rosbuild_add_executable(tsrp_video_streamer src/video_stream.cpp)
+rosbuild_add_executable(tsrp_video_streamer src/video_streamer.cpp)
 rosbuild_add_executable(tsrp_video_receiver src/video_receiver.cpp)

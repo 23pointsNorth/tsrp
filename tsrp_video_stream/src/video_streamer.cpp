@@ -1,10 +1,7 @@
 #include <ros/ros.h>
 #include <sensor_msgs/Image.h>
 #include <opencv2/opencv.hpp>
-#include <cv_bridge/cv_bridge.h>
 #include <sensor_msgs/image_encodings.h>
-
-namespace enc = sensor_msgs::image_encodings;
 
 unsigned long long frame_id = 0;
 
@@ -35,18 +32,27 @@ int main(int argc, char** argv)
 		if (!frame.data) ROS_ERROR("[VIDEO_STREAMER] Wrong frame.");
 
 		//Generate image
-		cv_bridge::CvImage cv_brdg_img;
-		ros::Time time = ros::Time::now();
-		cv_brdg_img.header.stamp = time;
-		cv_brdg_img.header.frame_id = "frame_id";//frame_id;
-		//cv_brdg_img.encoding = sensor_msgs::image_encodings::BGR8;
-		cv_brdg_img.image = frame;
-		
-		cv_brdg_img.toImageMsg(img);
+		img.encoding = sensor_msgs::image_encodings::RGB8;
 		img.height = frame.rows;
 		img.width  = frame.cols;
+		img.step   = img.width * 3; //image stride in bytes
+
+		int data_len = img.step * img.height;
+		img.data.resize(data_len);
 		img.is_bigendian = 0;
-		img.encoding = sensor_msgs::image_encodings::BGR8;
+
+		//Load data into msg
+		int msg_idx, buf_idx;
+		for(unsigned int i = 0; i < img.height; i++)
+		{
+			for(unsigned int j = 0; j < img.step; j++)
+			{
+				msg_idx = (img.height - i - 1) * img.step + j;
+				buf_idx = i * img.step + j;
+				img.data[msg_idx] = (unsigned char)(frame.data[buf_idx]);
+			}
+		}
+
 		//Publish image
 		img_pub.publish(img);
 
