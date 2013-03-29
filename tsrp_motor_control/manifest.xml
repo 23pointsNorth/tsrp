@@ -10,7 +10,7 @@
   <url>http://ros.org/wiki/tsrp_motor_control</url>
   <depend package="roscpp"/>
   <depend package="std_msgs"/>
-
+  <depend package="tsrp_hardware_control"/>
 </package>
 
 
