@@ -8,10 +8,13 @@
 bool img_received = false;
 cv::Mat img;
 
-void imageReceivedCallback(const sensor_msgs::ImageConstPtr& msg)
+void imageReceivedCallback(const sensor_msgs::Image& msg)
 {
   // display the image
-	img = cv_bridge::toCvShare(msg, sensor_msgs::image_encodings::RGB8)->image;
+	ROS_INFO("[VIDEO_RECEIVER] Converting...");
+	//img = cv_bridge::toCvShare(msg, sensor_msgs::image_encodings::BGR8).image;
+	img = cv::Mat(msg.height, msg.width, CV_8UC3, msg.data);
+	ROS_INFO("[VIDEO_RECEIVER] Converted.");
 	img_received = true;
 }
 
@@ -34,8 +37,10 @@ int main(int argc, char** argv)
 		ros::spinOnce();
 		if (img_received)
 		{
+			ROS_INFO("[VIDEO_RECEIVER] showing...");
 			cv::imshow("Image", img);
-
+ROS_INFO("[VIDEO_RECEIVER] Shown.");
+	
 			img_received = false;
 			cv::waitKey(5);
 		}

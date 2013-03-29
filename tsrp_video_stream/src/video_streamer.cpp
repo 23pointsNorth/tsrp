@@ -39,14 +39,14 @@ int main(int argc, char** argv)
 		ros::Time time = ros::Time::now();
 		cv_brdg_img.header.stamp = time;
 		cv_brdg_img.header.frame_id = "frame_id";//frame_id;
-		cv_brdg_img.encoding = sensor_msgs::image_encodings::BGR8;
+		//cv_brdg_img.encoding = sensor_msgs::image_encodings::BGR8;
 		cv_brdg_img.image = frame;
 		
 		cv_brdg_img.toImageMsg(img);
 		img.height = frame.rows;
 		img.width  = frame.cols;
 		img.is_bigendian = 0;
-
+		img.encoding = sensor_msgs::image_encodings::BGR8;
 		//Publish image
 		img_pub.publish(img);
 
