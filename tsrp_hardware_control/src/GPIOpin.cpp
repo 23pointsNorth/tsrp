@@ -24,6 +24,8 @@ GPIOpin::GPIOpin(unsigned int _pin, std::string _name, PinState _state, PinOutpu
 	}
 }
 
+GPIOpin::~GPIOpin() {}
+
 bool GPIOpin::InitializeGPIOpin()
 {
 	return setup_io();

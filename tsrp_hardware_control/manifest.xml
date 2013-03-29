@@ -10,7 +10,9 @@
   <url>http://ros.org/wiki/tsrp_hardware_control</url>
   <depend package="roscpp"/>
   <depend package="std_msgs"/>
-
+  <export>
+    <cpp cflags="-I${prefix}/include" lflags="-L${prefix}/lib -ltsrp_hardware_control"/>
+  </export>
 </package>
 
 
