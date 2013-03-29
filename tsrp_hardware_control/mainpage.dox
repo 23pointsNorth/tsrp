@@ -1,0 +1,14 @@
+/**
+\mainpage
+\htmlinclude manifest.html
+
+\b tsrp_hardware_control 
+
+<!-- 
+Package that will control the hardware level peripherals on the board.
+-->
+
+-->
+
+
+*/
