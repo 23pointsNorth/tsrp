@@ -16,6 +16,8 @@ all: $(PACKAGES)
 $(PACKAGES):
 	@$(MAKE) -j8 -o3 -C $@;
 
+$(MOTOR_CONTROL): $(HARDWARE_CONTROL)
+
 clean:
 	for d in $(PACKAGES) ; do (cd $$d; $(MAKE) clean ) ; done
 	
