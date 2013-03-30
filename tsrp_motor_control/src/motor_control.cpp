@@ -13,9 +13,15 @@ int main(int argc, char** argv)
 	ros::NodeHandle* node = new ros::NodeHandle();	
 
 	ros::Rate motor_refresh(200); //200Hz
-
+	ROS_INFO("[MOTOR_CONTROL] Initializing GPIO pins...");
+	if (!GPIOpin::InitializeGPIOpin())
+	{
+		ROS_ERROR("[MOTOR_CONTROL] Failed to initialize GPIO pins.");
+		return 1;
+	}
 	GPIOpin dir(17, "direction", OUTPUT, HIGH);
 	GPIOpin speed(18, "speed", OUTPUT, LOW);
+	ROS_INFO("[MOTOR_CONTROL] Generating square wave.");
 
 	while(ros::ok())
 	{

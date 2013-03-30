@@ -39,7 +39,7 @@ bool GPIOpin::setup_io()
 {
 	/* open /dev/mem */
 	if ((mem_fd = open("/dev/mem", O_RDWR|O_SYNC) ) < 0) {
-		ROS_ERROR("[GPIOpin] Cannot open /dev/mem!");
+		ROS_ERROR("[GPIOpin] Cannot open /dev/mem !");
 		return false;
 	}
 
