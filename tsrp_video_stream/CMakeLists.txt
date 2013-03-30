@@ -29,5 +29,10 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
+find_package(OpenCV REQUIRED)
+
 rosbuild_add_executable(tsrp_video_streamer src/video_streamer.cpp)
+target_link_libraries(tsrp_video_streamer ${OpenCV_LIBS})
+
 rosbuild_add_executable(tsrp_video_receiver src/video_receiver.cpp)
+target_link_libraries(tsrp_video_receiver ${OpenCV_LIBS})

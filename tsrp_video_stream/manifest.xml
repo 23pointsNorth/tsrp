@@ -10,7 +10,8 @@
   <url>http://ros.org/wiki/tsrp_video_stream</url>
   <depend package="roscpp"/>
   <depend package="sensor_msgs"/>
-  <depend package="opencv2"/>
+<!--  <depend package="opencv2"/>
+-->
 </package>
 
 
