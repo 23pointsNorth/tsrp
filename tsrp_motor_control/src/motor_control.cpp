@@ -1,5 +1,8 @@
 #include <ros/ros.h>
 #include <GPIOpin.h>
+#include <iostream>
+
+using namespace std;
 
 int main(int argc, char** argv)
 {
@@ -27,7 +30,24 @@ int main(int argc, char** argv)
 	{
 		ros::spinOnce();
 		
-		speed.ToggleOutput(); // Create a square wave 50% filled.
+		char key;
+		cin >> key;
+		
+		if (key == 'n') 
+		{
+			speed.ToggleOutput(); // Create a square wave 50% filled.
+			ROS_INFO("[MOTOR_CONTROL] Toggle.");
+		}
+		if (key == 'u')
+		{
+			speed.SetOutput(HIGH);
+			ROS_INFO("[MOTOR_CONTROL] High.");
+		}
+		if (key == 'l')
+		{
+			speed.SetOutput(LOW);
+			ROS_INFO("[MOTOR_CONTROL] Low.");
+		}
 
 		motor_refresh.sleep();
 	}
