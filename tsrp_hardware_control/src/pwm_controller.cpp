@@ -3,6 +3,7 @@
 #include <ros/ros.h>
 #include <std_msgs/Float32.h>
 #include <std_msgs/UInt32.h>
+#include <std_srvs/Empty.h>
 
 PWMController::PWMController(int argc, char *argv[], std::string _name, GPIOpin* _dir, GPIOpin* _pwm, long _update_freq, double _duty_cycle)
 {
@@ -24,11 +25,20 @@ PWMController::PWMController(int argc, char *argv[], std::string _name, GPIOpin*
 	std::string freq_subname = "pwm_freq_"; freq_subname += _name;
 	ros::Subscriber freq_sub = node->subscribe(freq_subname.c_str(), 10, &PWMController::new_freq_callback, this);
 
+	std::string stop_subname = "pwm_stop_"; stop_subname += _name;
+	ros::ServiceServer stop_service = node->advertiseService(stop_subname.c_str(), &PWMController::stop_service_callback, this);
+
 	name = _name;
 	dir = _dir;
 	pwm = _pwm;
 	period_s = ((1.0) / _update_freq);
 	duty_cycle = _duty_cycle;
+}
+
+bool PWMController::stop_service_callback(std_srvs::Empty::Request& request, std_srvs::Empty::Response& response)
+{
+	Stop();
+	return true;
 }
 
 void PWMController::new_duty_cycle_callback(const std_msgs::Float32& msg)
@@ -73,5 +83,4 @@ void PWMController::PWMCycle()
 		
 		period.sleep();
 	}
-
 }
