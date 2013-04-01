@@ -32,5 +32,4 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #rosbuild_add_executable(tsrp_hardware_control src/hardware_control.cpp src/GPIOpin.cpp)
 #rosbuild_add_executable(tsrp_hardware_control src/hardware_control.cpp)
 
-rosbuild_add_library(tsrp_hardware_control src/GPIOpin.cpp)
-#rosbuild_add_library(GPIOpin src/GPIOpin.cpp)
+rosbuild_add_library(tsrp_hardware_control src/GPIOpin.cpp src/pwm_controller.cpp)
