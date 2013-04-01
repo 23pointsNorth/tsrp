@@ -5,6 +5,8 @@
 #include <std_msgs/UInt32.h>
 #include <std_srvs/Empty.h>
 
+#include <boost/thread/thread.hpp>
+
 PWMController::PWMController(int argc, char *argv[], std::string _name, GPIOpin* _dir, GPIOpin* _pwm, long _update_freq, double _duty_cycle)
 {
 	std::string node_name = "pwm_controller_";
@@ -60,6 +62,7 @@ void PWMController::Start()
 {
 	stop = false;
 	//Start a new thread with PWMCycle
+	cycle_thread = new boost::thread(&PWMController::PWMCycle, this);
 }
 
 void PWMController::Stop()

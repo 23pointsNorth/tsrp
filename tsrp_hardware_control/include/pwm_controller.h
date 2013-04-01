@@ -7,6 +7,8 @@
 #include <std_msgs/UInt32.h>
 #include <std_srvs/Empty.h>
 
+#include <boost/thread/thread.hpp>
+
 #include "GPIOpin.h"
 
 class PWMController
@@ -23,6 +25,7 @@ private:
 	inline void new_freq_callback(const std_msgs::UInt32& msg);
 	inline bool stop_service_callback(std_srvs::Empty::Request& request, std_srvs::Empty::Response& response);
 
+	boost::thread* cycle_thread;
 	ros::NodeHandle* node;
 	bool stop;
 	std::string name;
